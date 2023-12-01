@@ -165,14 +165,26 @@ function buildThreeDayForecastHtml() {
 }
 
 export default function buildPageElements() {
-  const searchHtml = buildInputHtml("search", "search-input", "search-input");
+  const searchBarHtml = buildInputHtml("search", "search-box", "search-box");
+  searchBarHtml.placeholder = "Enter City or ZIP Code";
+
+  const searchBtnHtml = buildInputHtml("button", "search-btn", "search-btn");
+  searchBtnHtml.value = "Search";
 
   const tempToggleHtml = buildInputHtml(
     "button",
     "temp-toggle-btn",
     "temp-toggle-btn"
   );
-  tempToggleHtml.value = `${degSymbol}F/${degSymbol}C`; // Degree Symbols
+  tempToggleHtml.value = `${degSymbol}F / ${degSymbol}C`; // Degree Symbols
+
+  const inputsHtml = wrapHtmlElements(
+    "div",
+    searchBarHtml,
+    searchBtnHtml
+    // tempToggleHtml
+  );
+  inputsHtml.id = "inputs-container";
 
   const currentWeatherHtml = buildCurrentWeatherHtml();
   const threeDayForecastHtml = buildThreeDayForecastHtml();
@@ -184,7 +196,7 @@ export default function buildPageElements() {
   weatherInformationHtml.id = "weather-information-container";
 
   const pageElements = document.createDocumentFragment();
-  pageElements.append(searchHtml, tempToggleHtml, weatherInformationHtml);
+  pageElements.append(inputsHtml, weatherInformationHtml);
 
   return pageElements;
 }
