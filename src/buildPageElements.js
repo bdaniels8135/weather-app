@@ -92,8 +92,8 @@ function buildCurrentWeatherHtml() {
 
   const cityTextHtml = buildTextHtml("---,");
   cityTextHtml.id = "location-city";
-  const countryTextHtml = buildTextHtml("---");
-  countryTextHtml.id = "location-country";
+  const regionTextHtml = buildTextHtml("---");
+  regionTextHtml.id = "location-region";
 
   const currentWeatherHtml = wrapHtmlElements(
     "div",
@@ -113,7 +113,7 @@ function buildCurrentWeatherHtml() {
     currentPOPLabelHtml,
     currentPOPTextHtml,
     cityTextHtml,
-    countryTextHtml
+    regionTextHtml
   );
   currentWeatherHtml.id = "current-weather-container";
 
