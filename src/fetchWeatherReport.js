@@ -44,44 +44,26 @@ function extractCurrentWeatherData(weatherForecast) {
 
 function extractLocationData(weatherForecast) {
   const locationData = weatherForecast.location;
-  const { country, name, region } = locationData;
+  const { country, name } = locationData;
   return {
     country,
     name,
-    region,
   };
 }
 
 function extractFutureWeather(weatherForecast, daysAhead) {
   const weatherForDayAhead = weatherForecast.forecast.forecastday[daysAhead];
-  const moonPhase = weatherForDayAhead.astro.moon_phase;
-  const { moonrise, moonset, sunrise, sunset } = weatherForDayAhead.astro;
-  const { date } = weatherForDayAhead;
-  const humidity = weatherForDayAhead.day.avghumidity;
   const maxTempF = weatherForDayAhead.day.maxtemp_f;
   const maxTempC = weatherForDayAhead.day.maxtemp_c;
   const minTempF = weatherForDayAhead.day.mintemp_f;
   const minTempC = weatherForDayAhead.day.mintemp_c;
-  const conditionText = weatherForDayAhead.day.condition.text;
   const conditionIconURL = weatherForDayAhead.day.condition.icon;
-  const UVIndex = weatherForDayAhead.day.uv;
-  const maxWindMPH = weatherForDayAhead.day.maxwind_mph;
   return {
-    moonPhase,
-    moonrise,
-    moonset,
-    sunrise,
-    sunset,
-    date,
-    humidity,
     maxTempF,
     maxTempC,
     minTempF,
     minTempC,
-    conditionText,
     conditionIconURL,
-    UVIndex,
-    maxWindMPH,
   };
 }
 
