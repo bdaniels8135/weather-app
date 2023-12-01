@@ -10,7 +10,6 @@ async function fetchWeatherForecast(location, numDays) {
     mode: "cors",
   });
   const forecastWeatherReport = await forecastWeatherReportJSON.json();
-
   return forecastWeatherReport;
 }
 
@@ -44,10 +43,11 @@ function extractCurrentWeatherData(weatherForecast) {
 
 function extractLocationData(weatherForecast) {
   const locationData = weatherForecast.location;
-  const { country, name } = locationData;
+  const { country, name, region } = locationData;
   return {
     country,
     name,
+    region,
   };
 }
 
