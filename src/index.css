@@ -5,6 +5,58 @@
   border: 1px dashed red;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  max-width: 500px;
+  margin: auto;
+}
+
+#inputs-container {
+  display: flex;
+  padding: 0.5rem;
+  gap: 1rem;
+}
+
+#search-box {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  border: none;
+  border-bottom: 2px solid grey;
+}
+
+#search-btn {
+  padding: 0.5rem 0.5rem;
+  align-self: center;
+  font-weight: 650;
+}
+
+#weather-information-container {
+  display: flex;
+  flex-direction: column;
+
+}
+
+#current-weather-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#three-day-forecast-container {
+  display: flex;
+}
+
+.forecast-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
 .static-icon {
   height: 2rem;
 }
