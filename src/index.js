@@ -1,8 +1,8 @@
 import "./index.css";
-import fetchWeatherReport from "./fetchWeatherReport";
+// import fetchWeatherReport from "./fetchWeatherReport";
 import buildPageElements from "./buildPageElements";
 
-// const weatherReportPromise = fetchWeatherReport("08081", 4);
+// const weatherReportPromise = fetchWeatherReport("08081", 3);
 
 // weatherReportPromise
 //   .then((weatherReport) => {
