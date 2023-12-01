@@ -6,32 +6,32 @@ import conditionLoadIcon from "./img/dots-circle.svg";
 
 const degSymbol = "\u{00B0}";
 
-export function wrapHtmlElements(wrapperTag, ...elements) {
+function wrapHtmlElements(wrapperTag, ...elements) {
   const wrapperHtml = document.createElement(wrapperTag);
   wrapperHtml.append(...elements);
   return wrapperHtml;
 }
 
-export function buildIconHtml(icon) {
+function buildIconHtml(icon) {
   const iconHtml = document.createElement("img");
   iconHtml.src = icon;
   return iconHtml;
 }
 
-export function buildTextHtml(text) {
+function buildTextHtml(text) {
   const textHtml = document.createElement("p");
   textHtml.innerText = text;
   return textHtml;
 }
 
-export function buildLabelHtml(inputId, text) {
-  const labelHtml = document.createElement("label");
-  labelHtml.for = inputId;
-  labelHtml.innerText = text;
-  return labelHtml;
-}
+// function buildLabelHtml(inputId, text) {
+//   const labelHtml = document.createElement("label");
+//   labelHtml.for = inputId;
+//   labelHtml.innerText = text;
+//   return labelHtml;
+// }
 
-export function buildInputHtml(type, name, id) {
+function buildInputHtml(type, name, id) {
   const inputHtml = document.createElement("input");
   inputHtml.type = type;
   inputHtml.name = name;
@@ -39,20 +39,20 @@ export function buildInputHtml(type, name, id) {
   return inputHtml;
 }
 
-export function buildHeaderTextHtml(headerText, headerLevel) {
-  const headerTextHtml = document.createElement(`h${headerLevel}`);
-  headerTextHtml.innerHTML = headerText;
-  return headerTextHtml;
-}
+// function buildHeaderTextHtml(headerText, headerLevel) {
+//   const headerTextHtml = document.createElement(`h${headerLevel}`);
+//   headerTextHtml.innerHTML = headerText;
+//   return headerTextHtml;
+// }
 
-export function buildSelectOption(text, value) {
-  const optionHtml = document.createElement("option");
-  optionHtml.value = value;
-  optionHtml.innerText = text;
-  return optionHtml;
-}
+// function buildSelectOption(text, value) {
+//   const optionHtml = document.createElement("option");
+//   optionHtml.value = value;
+//   optionHtml.innerText = text;
+//   return optionHtml;
+// }
 
-export function buildCurrentWeatherHtml() {
+function buildCurrentWeatherHtml() {
   const currentConditionIconHtml = buildIconHtml(conditionLoadIcon);
   currentConditionIconHtml.id = "current-condition-icon";
   currentConditionIconHtml.classList.add("condition-icon");
@@ -145,7 +145,7 @@ function buildForecastCardHtml() {
   return forecastCardHtml;
 }
 
-export function buildThreeDayForecastHtml() {
+function buildThreeDayForecastHtml() {
   const todayForecastCardHtml = buildForecastCardHtml();
   todayForecastCardHtml.id = "forecast-today";
   const tomorrowForecastCardHtml = buildForecastCardHtml();
@@ -162,4 +162,29 @@ export function buildThreeDayForecastHtml() {
   threeDayForecastHtml.id = "three-day-forecast-container";
 
   return threeDayForecastHtml;
+}
+
+export default function buildPageElements() {
+  const searchHtml = buildInputHtml("search", "search-input", "search-input");
+
+  const tempToggleHtml = buildInputHtml(
+    "button",
+    "temp-toggle-btn",
+    "temp-toggle-btn"
+  );
+  tempToggleHtml.value = `${degSymbol}F/${degSymbol}C`; // Degree Symbols
+
+  const currentWeatherHtml = buildCurrentWeatherHtml();
+  const threeDayForecastHtml = buildThreeDayForecastHtml();
+  const weatherInformationHtml = wrapHtmlElements(
+    "div",
+    currentWeatherHtml,
+    threeDayForecastHtml
+  );
+  weatherInformationHtml.id = "weather-information-container";
+
+  const pageElements = document.createDocumentFragment();
+  pageElements.append(searchHtml, tempToggleHtml, weatherInformationHtml);
+
+  return pageElements;
 }
