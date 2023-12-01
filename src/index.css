@@ -1,0 +1,14 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  border: 1px dashed red;
+}
+
+.static-icon {
+  height: 2rem;
+}
+
+.condition-icon {
+  height: 3rem;
+}
