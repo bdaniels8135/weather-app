@@ -2,10 +2,15 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  border: 1px dashed red;
+  font-size: 1.1rem;
+  font-weight: 650;
 }
 
 body {
+  height: 100vh;
+}
+
+main {
   display: flex;
   flex-direction: column;
   padding: 2rem;
@@ -15,16 +20,15 @@ body {
 
 #inputs-container {
   display: flex;
-  padding: 0.5rem;
   gap: 1rem;
 }
 
 #search-box {
   flex: 1;
   padding: 0.5rem;
-  font-size: 1.2rem;
   border: none;
   border-bottom: 2px solid grey;
+  min-width: 0;
 }
 
 #search-btn {
@@ -36,16 +40,41 @@ body {
 #weather-information-container {
   display: flex;
   flex-direction: column;
-
+  border: 1px solid black;
+  margin-top: 1rem;
 }
 
 #current-weather-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: min-content 1fr 1fr 1fr;
+  align-items: center;
+  border: 1px solid black;
+}
+
+#current-condition-text {
+  grid-column: span 3;
+  font-size: 2rem;
+}
+
+#current-wind-speed {
+  grid-column: span 2;
 }
 
 #three-day-forecast-container {
   display: flex;
+}
+
+#location-name {
+  grid-column: span 2;
+  padding: 0.5rem;
+}
+
+#location-region {
+  grid-column: span 2;
+}
+
+.day-name {
+  font-size: 1.5rem;
 }
 
 .forecast-card {
@@ -54,13 +83,16 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  padding: 1rem;
+  padding: 0.5rem;
+  border: 1px solid black;
 }
 
 .static-icon {
-  height: 2rem;
+  height: 3rem;
+  padding: 0.5rem;
 }
 
 .condition-icon {
-  height: 3rem;
+  height: 5rem;
+  padding: 0.5rem;
 }
