@@ -24,13 +24,6 @@ function buildTextHtml(text) {
   return textHtml;
 }
 
-// function buildLabelHtml(inputId, text) {
-//   const labelHtml = document.createElement("label");
-//   labelHtml.for = inputId;
-//   labelHtml.innerText = text;
-//   return labelHtml;
-// }
-
 function buildInputHtml(type, name, id) {
   const inputHtml = document.createElement("input");
   inputHtml.type = type;
@@ -38,19 +31,6 @@ function buildInputHtml(type, name, id) {
   if (id) inputHtml.id = id;
   return inputHtml;
 }
-
-// function buildHeaderTextHtml(headerText, headerLevel) {
-//   const headerTextHtml = document.createElement(`h${headerLevel}`);
-//   headerTextHtml.innerHTML = headerText;
-//   return headerTextHtml;
-// }
-
-// function buildSelectOption(text, value) {
-//   const optionHtml = document.createElement("option");
-//   optionHtml.value = value;
-//   optionHtml.innerText = text;
-//   return optionHtml;
-// }
 
 function buildCurrentWeatherHtml() {
   const currentConditionIconHtml = buildIconHtml(conditionLoadIcon);
@@ -80,18 +60,18 @@ function buildCurrentWeatherHtml() {
   const currentUVIndexTextHtml = buildTextHtml("---");
   currentUVIndexTextHtml.id = "current-uv-index";
 
+  const currentPOPLabelHtml = buildTextHtml("PoP");
+  currentPOPLabelHtml.classList.add("static-label");
+  const currentPOPTextHtml = buildTextHtml("-- %");
+  currentPOPTextHtml.id = "current-pop";
+
   const currentHumidityIconHtml = buildIconHtml(humidityIcon);
   currentHumidityIconHtml.classList.add("static-icon");
   const currentHumidityTextHtml = buildTextHtml("-- %");
   currentHumidityTextHtml.id = "current-humidity";
 
-  const currentPOPLabelHtml = buildTextHtml("POP");
-  currentPOPLabelHtml.classList.add("static-label");
-  const currentPOPTextHtml = buildTextHtml("-- %");
-  currentPOPTextHtml.id = "current-pop";
-
-  const cityTextHtml = buildTextHtml("---,");
-  cityTextHtml.id = "location-city";
+  const nameTextHtml = buildTextHtml("---");
+  nameTextHtml.id = "location-name";
   const regionTextHtml = buildTextHtml("---");
   regionTextHtml.id = "location-region";
 
@@ -104,15 +84,13 @@ function buildCurrentWeatherHtml() {
     currentFeelsLikeLabelHtml,
     currentFeelsLikeTextHtml,
     currentWindIconHtml,
-    currentWindSpeedTextHtml,
     currentWindDirectionHtml,
+    currentWindSpeedTextHtml,
     currentUVIndexIconHtml,
     currentUVIndexTextHtml,
     currentHumidityIconHtml,
     currentHumidityTextHtml,
-    currentPOPLabelHtml,
-    currentPOPTextHtml,
-    cityTextHtml,
+    nameTextHtml,
     regionTextHtml
   );
   currentWeatherHtml.id = "current-weather-container";
@@ -164,26 +142,14 @@ function buildThreeDayForecastHtml() {
   return threeDayForecastHtml;
 }
 
-export default function buildPageElements() {
+export default function buildPageMainHtml() {
   const searchBarHtml = buildInputHtml("search", "search-box", "search-box");
   searchBarHtml.placeholder = "Enter City or ZIP Code";
 
   const searchBtnHtml = buildInputHtml("button", "search-btn", "search-btn");
   searchBtnHtml.value = "Search";
 
-  const tempToggleHtml = buildInputHtml(
-    "button",
-    "temp-toggle-btn",
-    "temp-toggle-btn"
-  );
-  tempToggleHtml.value = `${degSymbol}F / ${degSymbol}C`; // Degree Symbols
-
-  const inputsHtml = wrapHtmlElements(
-    "div",
-    searchBarHtml,
-    searchBtnHtml
-    // tempToggleHtml
-  );
+  const inputsHtml = wrapHtmlElements("div", searchBarHtml, searchBtnHtml);
   inputsHtml.id = "inputs-container";
 
   const currentWeatherHtml = buildCurrentWeatherHtml();
@@ -195,8 +161,11 @@ export default function buildPageElements() {
   );
   weatherInformationHtml.id = "weather-information-container";
 
-  const pageElements = document.createDocumentFragment();
-  pageElements.append(inputsHtml, weatherInformationHtml);
+  const pageMainHtml = wrapHtmlElements(
+    "main",
+    inputsHtml,
+    weatherInformationHtml
+  );
 
-  return pageElements;
+  return pageMainHtml;
 }
