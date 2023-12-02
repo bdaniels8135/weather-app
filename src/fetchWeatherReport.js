@@ -53,12 +53,14 @@ function extractLocationData(weatherForecast) {
 
 function extractFutureWeather(weatherForecast, daysAhead) {
   const weatherForDayAhead = weatherForecast.forecast.forecastday[daysAhead];
+  const { date } = weatherForDayAhead;
   const maxTempF = weatherForDayAhead.day.maxtemp_f;
   const maxTempC = weatherForDayAhead.day.maxtemp_c;
   const minTempF = weatherForDayAhead.day.mintemp_f;
   const minTempC = weatherForDayAhead.day.mintemp_c;
   const conditionIconURL = weatherForDayAhead.day.condition.icon;
   return {
+    date,
     maxTempF,
     maxTempC,
     minTempF,
