@@ -4,15 +4,32 @@ import buildPageMainHtml from "./buildPageMainHtml";
 import displayWeatherReport from "./displayWeatherReport";
 
 const body = document.querySelector("body");
-const main = buildPageMainHtml();
-body.append(main);
+const mainPageHtml = buildPageMainHtml();
+body.appendChild(mainPageHtml);
 
-const weatherReportPromise = fetchWeatherReport("08081", 3);
+const searchBox = document.querySelector("#search-box");
 
-weatherReportPromise
-  .then((weatherReport) => {
-    displayWeatherReport(weatherReport);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+searchBox.addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
+    const weatherReportPromise = fetchWeatherReport(searchBox.value, 3);
+    weatherReportPromise
+      .then((weatherReport) => {
+        displayWeatherReport(weatherReport);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+});
+
+const searchBtn = document.querySelector("#search-btn");
+searchBtn.addEventListener("click", () => {
+  const weatherReportPromise = fetchWeatherReport(searchBox.value, 3);
+  weatherReportPromise
+    .then((weatherReport) => {
+      displayWeatherReport(weatherReport);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
